@@ -287,9 +287,8 @@ body.focusing .row.dragging{filter:none;opacity:1}
 @media (max-width:520px){.row{gap:9px;padding:8px 12px}.note{font-size:14px;max-width:34%;white-space:normal;line-height:1.25;overflow:visible;text-overflow:clip;text-align:center}.body{gap:4px;flex-wrap:wrap}.t{font-size:16px}}
 /*TOPSTRIP*/
 body::before{content:"";position:fixed;top:0;left:0;right:0;height:calc(env(safe-area-inset-top) + 12px);background:linear-gradient(#000 0,#000 env(safe-area-inset-top),rgba(0,0,0,0) 100%);z-index:9999;pointer-events:none}
-html{background:var(--bg) fixed}
-body{position:fixed;top:0;left:0;right:0;bottom:0;width:100%;height:auto;min-height:-webkit-fill-available}
-.app{height:100%}
+html{background:#000}
+html,body{height:var(--H,100%)}
 </style>
 </head>
 <body>
@@ -1168,6 +1167,9 @@ if(sc)setTimeout(syKick,400);
 
 render(true);
 })();
+</script>
+<script>/*FULLH*/
+(function(){var d=document.documentElement;function fit(){try{var sa=matchMedia('(display-mode: standalone)').matches||navigator.standalone;if(!sa){d.style.removeProperty('--H');return}var h=Math.max(innerHeight,(innerWidth<=screen.width&&screen.height>=screen.width)?screen.height:0);if(h>innerHeight)d.style.setProperty('--H',h+'px');else d.style.removeProperty('--H')}catch(e){}}fit();addEventListener('resize',fit);addEventListener('orientationchange',function(){setTimeout(fit,200)});addEventListener('pageshow',fit)})();
 </script>
 </body>
 </html>
