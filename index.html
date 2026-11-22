@@ -289,9 +289,6 @@ body.focusing .row.dragging{filter:none;opacity:1}
 body::before{content:"";position:fixed;top:0;left:0;right:0;height:calc(env(safe-area-inset-top) + 12px);background:linear-gradient(#000 0,#000 env(safe-area-inset-top),rgba(0,0,0,0) 100%);z-index:9999;pointer-events:none}
 html{background:#000}
 html,body{height:var(--H,100%)}
-/*KBFIX*/
-html.kb .composer{bottom:10px}
-html.kb{overflow:hidden}
 </style>
 </head>
 <body>
@@ -324,7 +321,7 @@ html.kb{overflow:hidden}
 
   <div class="composer" id="composer">
     <button class="cbtn" id="cEmoji" title="Pick an emoji for the new task">🙂</button>
-    <input id="cInput" enterkeyhint="done" autocapitalize="sentences" dir="auto" placeholder="Add a new task…" autocomplete="off" maxlength="120">
+    <input id="cInput" dir="auto" placeholder="Add a new task…" autocomplete="off" maxlength="120">
     <button class="cbtn" id="cDiv" title="Add a divider line"><svg viewBox="0 0 24 24"><path d="M4 12h16"/></svg></button>
     <button class="cbtn send" id="cSend" title="Add task"><svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
   </div>
@@ -1172,18 +1169,7 @@ render(true);
 })();
 </script>
 <script>/*FULLH*/
-(function(){var d=document.documentElement;function fit(){try{if(d.classList.contains('kb'))return;var sa=matchMedia('(display-mode: standalone)').matches||navigator.standalone;if(!sa){d.style.removeProperty('--H');return}var h=Math.max(innerHeight,(innerWidth<=screen.width&&screen.height>=screen.width)?screen.height:0);if(h>innerHeight)d.style.setProperty('--H',h+'px');else d.style.removeProperty('--H')}catch(e){}}window.__fit=fit;fit();addEventListener('resize',fit);addEventListener('orientationchange',function(){setTimeout(fit,200)});addEventListener('pageshow',fit)})();
-</script>
-<script>/*KBFIX*/
-(function(){var vv=window.visualViewport,d=document.documentElement;if(!vv)return;
-function sync(){var open=window.innerHeight-vv.height>120&&/INPUT|TEXTAREA/.test((document.activeElement||{}).tagName||'');
-d.classList.toggle('kb',open);
-if(open){d.style.setProperty('--H',vv.height+'px');window.scrollTo(0,0);document.body.scrollTop=0}
-else if(!d.classList.contains('kb')){}
-if(!open&&window.__fit)window.__fit()}
-vv.addEventListener('resize',sync);vv.addEventListener('scroll',function(){if(d.classList.contains('kb'))window.scrollTo(0,0)});
-addEventListener('focusout',function(){setTimeout(sync,120)});
-})();
+(function(){var d=document.documentElement;function fit(){try{var sa=matchMedia('(display-mode: standalone)').matches||navigator.standalone;if(!sa){d.style.removeProperty('--H');return}var h=Math.max(innerHeight,(innerWidth<=screen.width&&screen.height>=screen.width)?screen.height:0);if(h>innerHeight)d.style.setProperty('--H',h+'px');else d.style.removeProperty('--H')}catch(e){}}fit();addEventListener('resize',fit);addEventListener('orientationchange',function(){setTimeout(fit,200)});addEventListener('pageshow',fit)})();
 </script>
 </body>
 </html>
