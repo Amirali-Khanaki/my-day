@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="My Day">
 <meta name="theme-color" content="#fff1e3">
 <link rel="manifest" href="manifest.webmanifest">
@@ -163,7 +163,7 @@ body.focusing .row.dragging{filter:none;opacity:1}
 @keyframes boing{0%{transform:scale(.8)}50%{transform:scale(1.28)}100%{transform:scale(1)}}
 .body{flex:1;min-width:0;display:flex;align-items:center;gap:5px;justify-content:flex-start;pointer-events:none}
 .t,.em{pointer-events:auto;cursor:pointer}
-.t{unicode-bidi:plaintext;font-size:17px;overflow-wrap:anywhere;text-decoration:line-through;text-decoration-color:transparent;transition:opacity .3s,text-decoration-color .3s}
+.t{unicode-bidi:plaintext;font-size:17px;overflow-wrap:break-word;text-decoration:line-through;text-decoration-color:transparent;transition:opacity .3s,text-decoration-color .3s}
 .checked .t{opacity:.5;text-decoration-color:currentColor}
 .em{font-size:17px;flex:none}
 .em:empty,.note:empty{display:none}
@@ -283,6 +283,8 @@ body.focusing .row.dragging{filter:none;opacity:1}
 #syncSheet .card{position:relative}
 .syx{position:absolute;top:10px;right:12px;width:32px;height:32px;border:0;border-radius:50%;background:rgba(0,0,0,.06);color:inherit;font-size:15px;line-height:32px;cursor:pointer;padding:0}
 .syx:hover{background:rgba(0,0,0,.12)}
+/*PHONEFIX*/
+@media (max-width:520px){.row{gap:9px;padding:8px 12px}.note{font-size:14px;max-width:34%;white-space:normal;line-height:1.25;overflow:visible;text-overflow:clip;text-align:center}.body{gap:4px;flex-wrap:wrap}.t{font-size:16px}}
 </style>
 </head>
 <body>
@@ -419,7 +421,7 @@ const find=id=>state.find(t=>t.id===id);
 /* ---------- theme ---------- */
 let theme='light';
 try{theme=localStorage.getItem(TKEY)||'light'}catch(e){}
-const applyTheme=()=>{document.documentElement.dataset.theme=theme;$('#themeBtn').textContent=theme==='dark'?'☀️':'🌙'};
+const applyTheme=()=>{document.documentElement.dataset.theme=theme;$('#themeBtn').textContent=theme==='dark'?'☀️':'🌙';try{document.querySelector('meta[name=theme-color]').content=theme==='dark'?'#000000':'#fff1e3'}catch(e){}};
 applyTheme();
 $('#focusBtn').onclick=()=>{
   if(!hasFocus()){toast('Hover a task and tap the 🎯 button to pick what to focus on');return}
