@@ -1,5 +1,5 @@
 /* My Day - works offline after the first visit. Bump VERSION when you upload a new index.html. */
-const VERSION = 'myday-v8';
+const VERSION = 'myday-v9';
 const CORE = ['./', 'index.html', 'manifest.webmanifest', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/apple-touch-icon.png'];
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(VERSION).then(c => c.addAll(CORE)).then(() => self.skipWaiting()));
